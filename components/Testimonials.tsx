@@ -107,7 +107,7 @@ export default function Testimonials() {
         {/* Featured testimonial */}
         <motion.div
           key={active}
-          className={`relative bg-gradient-to-br ${testimonials[active].bg} bg-[#141414] border border-white/[0.06] rounded-[2.5rem] p-8 lg:p-12 mb-4 overflow-hidden`}
+          className={`relative bg-gradient-to-br ${testimonials[active].bg} bg-[#141414] border border-white/[0.06] rounded-[2.5rem] p-8 lg:p-12 overflow-hidden`}
           initial={{ opacity: 0, y: 20, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -149,47 +149,8 @@ export default function Testimonials() {
           </div>
         </motion.div>
 
-        {/* Thumbnails row */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-          {testimonials
-            .filter((_, i) => i !== active)
-            .slice(0, 4)
-            .map((t, i) => (
-              <motion.button
-                key={t.name}
-                onClick={() => {
-                  const realIndex = testimonials.findIndex((tt) => tt.name === t.name)
-                  setActive(realIndex)
-                }}
-                className={`text-left bg-gradient-to-br ${t.bg} bg-[#141414] border border-white/[0.06] rounded-2xl p-5 hover:border-white/[0.12] transition-colors`}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                whileHover={{ scale: 1.02 }}
-              >
-                <div className="flex gap-0.5 mb-3">
-                  {Array.from({ length: 5 }).map((_, j) => (
-                    <Star key={j} size={10} weight="fill" className="text-[#d4a857]" />
-                  ))}
-                </div>
-                <p className="text-white/55 text-xs leading-relaxed line-clamp-2 mb-3">
-                  "{t.text}"
-                </p>
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-[#d4a857]/15 border border-[#d4a857]/20 flex items-center justify-center">
-                    <span className="text-[#d4a857] text-[9px] font-syne font-bold">
-                      {t.initials}
-                    </span>
-                  </div>
-                  <span className="text-white/40 text-xs">{t.name}</span>
-                </div>
-              </motion.button>
-            ))}
-        </div>
-
         {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-2 mt-10">
           {testimonials.map((_, i) => (
             <button
               key={i}
