@@ -6,10 +6,7 @@ import {
   Camera,
   ChartLineUp,
   DeviceMobileCamera,
-  Lightning,
-  MapPin,
   Compass,
-  Sparkle,
 } from '@phosphor-icons/react'
 
 function TikTokIcon({ size = 24, className = '' }: { size?: number; className?: string }) {
@@ -59,22 +56,10 @@ const services: Service[] = [
     span: '',
   },
   {
-    icon: Lightning,
-    title: 'Viral Short-Form Videos',
-    desc: 'Content engineered to go viral and reach thousands of potential customers fast.',
-    span: 'lg:col-span-2',
-  },
-  {
-    icon: MapPin,
-    title: 'Local Brand Promotion',
-    desc: 'Hyper-local content strategy for Valencia businesses.',
-    span: '',
-  },
-  {
     icon: Compass,
     title: 'Content Strategy',
-    desc: 'Data-driven strategy to grow your presence consistently.',
-    span: '',
+    desc: 'Data-driven strategy to grow your presence consistently in Valencia and beyond.',
+    span: 'col-span-2 lg:col-span-4',
   },
 ]
 
@@ -107,7 +92,7 @@ export default function Services() {
           {services.map((service, i) => {
             const Icon = service.icon
             const isLarge = i === 0
-            const isWide = i === 5
+            const isWide = i === services.length - 1
 
             return (
               <motion.div
@@ -147,7 +132,7 @@ export default function Services() {
                     <p
                       className={`text-white/35 leading-relaxed ${
                         isLarge ? 'text-sm' : 'text-xs'
-                      } ${isWide ? 'max-w-sm' : ''}`}
+                      } ${isWide ? 'max-w-md' : ''}`}
                     >
                       {service.desc}
                     </p>

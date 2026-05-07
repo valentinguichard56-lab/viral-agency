@@ -58,15 +58,6 @@ const items = [
     tall: false,
   },
   {
-    type: 'photo',
-    category: 'Food',
-    title: 'Gourmet Details',
-    metric: '+150% profile visits',
-    gradient: 'from-amber-900/40 via-stone-800/30 to-neutral-950',
-    platform: 'instagram',
-    tall: false,
-  },
-  {
     type: 'video',
     category: 'Hotel',
     title: 'Hotel Vincci Palace',
@@ -74,15 +65,6 @@ const items = [
     gradient: 'from-zinc-900/60 via-stone-800/20 to-neutral-950',
     platform: 'tiktok',
     tall: true,
-  },
-  {
-    type: 'photo',
-    category: 'Bar',
-    title: 'Rooftop Sessions',
-    metric: '55K impressions',
-    gradient: 'from-slate-800/40 via-zinc-900/30 to-stone-950',
-    platform: 'instagram',
-    tall: false,
   },
 ]
 
@@ -111,7 +93,7 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Masonry grid */}
-        <div className="columns-2 lg:columns-3 xl:columns-4 gap-3">
+        <div className="columns-2 lg:columns-3 gap-3">
           {items.map((item, i) => (
             <PortfolioCard key={i} item={item} index={i} />
           ))}
