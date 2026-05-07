@@ -2,6 +2,7 @@
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { ArrowRight, Play, TrendUp, Eye } from '@phosphor-icons/react'
+import { ShaderBackground } from './ui/shader-background'
 
 function TikTokIcon({ size = 18, className = '' }: { size?: number; className?: string }) {
   return (
@@ -30,24 +31,41 @@ const fadeUp = {
 export default function Hero() {
   return (
     <section className="relative min-h-[100dvh] flex flex-col justify-center overflow-hidden bg-[#0d0d0d]">
-      {/* Background */}
+      {/* Animated shader background */}
+      <ShaderBackground
+        variant="mesh"
+        speed={0.3}
+        colors={['#0a0a0a', '#141414', '#3a2a10', '#d4a857']}
+        className="opacity-50"
+      />
+
+      {/* Vignette to keep text readable on top of the shader */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, rgba(13,13,13,0) 0%, rgba(13,13,13,0.55) 60%, rgba(13,13,13,0.85) 100%)',
+        }}
+      />
+
+      {/* Decorative overlays on top of the shader */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
           className="absolute top-1/3 right-1/4 w-[700px] h-[700px] rounded-full"
           style={{
             background:
-              'radial-gradient(circle, rgba(212,168,87,0.07) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(212,168,87,0.05) 0%, transparent 65%)',
           }}
-          animate={{ scale: [1, 1.15, 1], opacity: [0.5, 1, 0.5] }}
+          animate={{ scale: [1, 1.15, 1], opacity: [0.4, 0.8, 0.4] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
           className="absolute bottom-1/4 left-1/6 w-[500px] h-[500px] rounded-full"
           style={{
             background:
-              'radial-gradient(circle, rgba(212,168,87,0.04) 0%, transparent 65%)',
+              'radial-gradient(circle, rgba(212,168,87,0.03) 0%, transparent 65%)',
           }}
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.3, 0.7, 0.3] }}
+          animate={{ scale: [1.1, 1, 1.1], opacity: [0.25, 0.55, 0.25] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut', delay: 2 }}
         />
         {/* Grid */}
