@@ -22,7 +22,12 @@ type Service = {
   title: string
   desc: string
   span?: string
+  bg: string
+  bgPosition?: string
 }
+
+const UNSPLASH = (id: string, w = 1200) =>
+  `https://images.unsplash.com/${id}?w=${w}&q=80&auto=format&fit=crop`
 
 const services: Service[] = [
   {
@@ -30,36 +35,48 @@ const services: Service[] = [
     title: 'TikTok Content Creation',
     desc: 'Viral-optimized short-form videos designed for maximum reach and engagement. Every hook, transition, and sound engineered for the algorithm.',
     span: 'lg:col-span-2 lg:row-span-2',
+    bg: UNSPLASH('photo-1611162616305-c69b3fa7fbe0', 1600),
+    bgPosition: 'center',
   },
   {
     icon: InstagramLogo,
     title: 'Instagram Reels',
     desc: 'Premium Reels that drive followers, saves, and bookings.',
     span: '',
+    bg: UNSPLASH('photo-1611605698323-b1e99cfd37ea'),
+    bgPosition: 'center',
   },
   {
     icon: Camera,
     title: 'Food & Lifestyle Photography',
     desc: 'Premium photos that make your products irresistible.',
     span: '',
+    bg: UNSPLASH('photo-1567620905732-2d1ec7ab7445'),
+    bgPosition: 'center',
   },
   {
     icon: DeviceMobileCamera,
     title: 'Story Creation',
     desc: 'Engaging Stories that keep your audience coming back daily.',
     span: '',
+    bg: UNSPLASH('photo-1611162616475-46b635cb6868'),
+    bgPosition: 'center',
   },
   {
     icon: ChartLineUp,
     title: 'Social Media Management',
     desc: 'Full management of your Instagram and TikTok presence.',
     span: '',
+    bg: UNSPLASH('photo-1551288049-bebda4e38f71'),
+    bgPosition: 'center',
   },
   {
     icon: Compass,
     title: 'Content Strategy',
     desc: 'Data-driven strategy to grow your presence consistently in Valencia and beyond.',
     span: 'col-span-2 lg:col-span-4',
+    bg: UNSPLASH('photo-1542626991-cbc4e32524cc', 1600),
+    bgPosition: 'center',
   },
 ]
 
@@ -97,7 +114,7 @@ export default function Services() {
             return (
               <motion.div
                 key={service.title}
-                className={`relative bg-[#141414] border border-white/[0.06] rounded-2xl p-6 overflow-hidden group cursor-default ${service.span ?? ''}`}
+                className={`relative bg-[#141414] border border-white/[0.06] rounded-2xl overflow-hidden group cursor-default ${service.span ?? ''}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -106,18 +123,40 @@ export default function Services() {
                   delay: i * 0.055,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                whileHover={{ borderColor: 'rgba(212,168,87,0.14)' }}
+                whileHover={{ borderColor: 'rgba(212,168,87,0.22)' }}
               >
-                {/* Hover glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-[#d4a857]/0 to-transparent group-hover:from-[#d4a857]/[0.035] transition-all duration-500 rounded-2xl" />
+                {/* Background image */}
+                <div
+                  className="absolute inset-0 bg-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+                  style={{
+                    backgroundImage: `url(${service.bg})`,
+                    backgroundPosition: service.bgPosition ?? 'center',
+                    filter: 'saturate(0.85)',
+                  }}
+                  aria-hidden="true"
+                />
 
-                <div className="relative z-10 h-full flex flex-col justify-between">
+                {/* Dark overlay to keep text readable */}
+                <div
+                  className="absolute inset-0"
+                  style={{
+                    background:
+                      'linear-gradient(180deg, rgba(10,10,10,0.78) 0%, rgba(10,10,10,0.86) 55%, rgba(10,10,10,0.94) 100%)',
+                  }}
+                  aria-hidden="true"
+                />
+
+                {/* Subtle gold hover wash */}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#d4a857]/0 to-transparent group-hover:from-[#d4a857]/[0.07] transition-all duration-500" />
+
+                {/* Card content */}
+                <div className="relative z-10 h-full flex flex-col justify-between p-6">
                   <div
-                    className={`p-2.5 w-fit rounded-xl bg-white/[0.04] border border-white/[0.06] group-hover:bg-[#d4a857]/10 group-hover:border-[#d4a857]/20 transition-all duration-300`}
+                    className={`p-2.5 w-fit rounded-xl bg-white/[0.06] border border-white/[0.1] backdrop-blur-sm group-hover:bg-[#d4a857]/15 group-hover:border-[#d4a857]/30 transition-all duration-300`}
                   >
                     <Icon
                       size={isLarge ? 26 : 20}
-                      className="text-white/55 group-hover:text-[#d4a857] transition-colors duration-300"
+                      className="text-white/75 group-hover:text-[#d4a857] transition-colors duration-300"
                     />
                   </div>
 
@@ -130,7 +169,7 @@ export default function Services() {
                       {service.title}
                     </h3>
                     <p
-                      className={`text-white/35 leading-relaxed ${
+                      className={`text-white/60 leading-relaxed ${
                         isLarge ? 'text-sm' : 'text-xs'
                       } ${isWide ? 'max-w-md' : ''}`}
                     >
