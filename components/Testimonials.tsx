@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, useMotionValue, useSpring, animate } from 'framer-motion'
-import { useState, useRef, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { Star, InstagramLogo, ArrowLeft, ArrowRight } from '@phosphor-icons/react'
 
 function TikTokIcon({ size = 16, className = '' }: { size?: number; className?: string }) {

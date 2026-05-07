@@ -111,7 +111,7 @@ export default function Portfolio() {
         </motion.div>
 
         {/* Masonry grid */}
-        <div className="columns-2 lg:columns-3 xl:columns-4 gap-3">
+        <div className="columns-2 lg:columns-3 gap-3">
           {items.map((item, i) => (
             <PortfolioCard key={i} item={item} index={i} />
           ))}
